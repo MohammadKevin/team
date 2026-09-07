@@ -29,10 +29,10 @@ export default function Footer() {
             </p>
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] font-mono text-slate-600">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>Accepting New Projects (Q3/Q4 2026)</span>
+              <span>Accepting New Projects (Q3/Q4 • UTC+7 / Jakarta)</span>
             </div>
           </div>
 
@@ -63,6 +63,16 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#pricing" className="hover:text-cyan-600 transition-colors">
+                  Pricing & Retainers
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className="hover:text-cyan-600 transition-colors">
+                  Technical FAQ
+                </a>
+              </li>
+              <li>
                 <a href="#contact" className="hover:text-cyan-600 transition-colors">
                   Contact & Inquiry
                 </a>
@@ -78,20 +88,20 @@ export default function Footer() {
               </h4>
               <div className="flex items-center gap-2">
                 <a
-                  href="https://github.com/mohammadkevin"
+                  href="https://github.com/MohammadKevin"
                   target="_blank"
                   rel="noreferrer"
                   className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white transition-colors"
-                  aria-label="GitHub Profiles"
+                  aria-label="Kevin GitHub Profile"
                 >
                   <GithubIcon className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://linkedin.com/in/mohammadkevin"
                   target="_blank"
                   rel="noreferrer"
                   className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 hover:bg-cyan-600 hover:text-white transition-colors"
-                  aria-label="LinkedIn Profiles"
+                  aria-label="Kevin LinkedIn Profile"
                 >
                   <LinkedinIcon className="w-4 h-4" />
                 </a>
@@ -121,7 +131,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Mohammad Kevin & Danendra Athallah. All rights reserved.
           </div>
           <div className="flex items-center gap-2">
-            <span>Built with Next.js 16, TypeScript & Tailwind CSS</span>
+            <span>Built with Next.js 16, React 19, TypeScript & Tailwind CSS</span>
           </div>
         </div>
       </div>

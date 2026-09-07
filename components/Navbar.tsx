@@ -21,6 +21,8 @@ export default function Navbar() {
     { name: "Selected Works", href: "#works" },
     { name: "The Duo", href: "#team" },
     { name: "Process", href: "#process" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "FAQ", href: "#faq" },
     { name: "Inquiry", href: "#contact" },
   ];
 
@@ -28,7 +30,7 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-200 ${
         isScrolled
-          ? "bg-white/85 backdrop-blur-md border-b border-slate-200/80 shadow-xs"
+          ? "bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-xs"
           : "bg-white/95 backdrop-blur-xs border-b border-slate-100"
       }`}
     >
@@ -54,22 +56,22 @@ export default function Navbar() {
             </Link>
 
             {/* Live Availability Badge */}
-            <div className="hidden lg:flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] font-mono text-slate-600">
+            <div className="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] font-mono text-slate-600">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>Available for Q3/Q4 Projects</span>
+              <span>Available for New Projects (UTC+7)</span>
             </div>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+          <nav className="hidden md:flex items-center gap-1 lg:gap-1.5">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/70 transition-all duration-150"
+                className="px-3 py-2 rounded-lg text-xs lg:text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100/80 transition-all duration-150"
               >
                 {link.name}
               </a>
@@ -98,7 +100,7 @@ export default function Navbar() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -109,10 +111,10 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-3">
+        <div className="md:hidden border-b border-slate-200 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-3 animate-in fade-in duration-150">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-mono text-slate-600">
-            <span className="h-2 w-2 rounded-full bg-cyan-500 animate-pulse" />
-            <span>Available for Q3/Q4 Projects</span>
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Available for New Projects (UTC+7 / Jakarta)</span>
           </div>
 
           <div className="space-y-1">

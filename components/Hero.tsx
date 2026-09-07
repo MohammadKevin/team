@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, Code2, Cpu, CheckCircle2, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, Code2, Cpu, CheckCircle2, ShieldCheck, Zap, Globe2 } from "lucide-react";
 
 export default function Hero() {
   const techChips = [
     { label: "Next.js 16 (App Router)", category: "Frontend Core" },
     { label: "TypeScript (Strict)", category: "Type-Safe" },
-    { label: "Node.js & Go", category: "High Concurrency" },
+    { label: "Go (Golang) & Node.js", category: "High Concurrency" },
     { label: "PostgreSQL & Prisma", category: "Database Layer" },
     { label: "Redis & WebSockets", category: "Real-Time" },
     { label: "REST & GraphQL", category: "API Contracts" },
@@ -44,10 +44,17 @@ export default function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Engineering Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-50/80 border border-cyan-200/80 text-cyan-800 text-xs font-mono font-medium tracking-wide mb-6 shadow-2xs">
-            <span className="flex h-2 w-2 rounded-full bg-cyan-500" />
-            <span>Senior Fullstack & Backend Duo • Direct Technical Collaboration</span>
+          {/* Engineering Badge & Live Timezone */}
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-slate-100 text-xs font-mono font-medium tracking-wide mb-6 shadow-xs border border-slate-800">
+            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-cyan-300 font-bold">Kevin & Danendra</span>
+            <span className="text-slate-500">•</span>
+            <span className="text-slate-300">Senior Fullstack & Backend Duo</span>
+            <span className="hidden sm:inline text-slate-500">•</span>
+            <span className="hidden sm:inline-flex items-center gap-1 text-slate-400">
+              <Globe2 className="w-3 h-3 text-cyan-400" />
+              <span>UTC+7 / Jakarta</span>
+            </span>
           </div>
 
           {/* Main Headline */}
@@ -69,18 +76,18 @@ export default function Hero() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-base font-semibold text-white bg-slate-900 hover:bg-cyan-600 transition-all duration-200 shadow-md hover:shadow-cyan-500/20 active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-base font-semibold text-white bg-slate-900 hover:bg-cyan-600 transition-all duration-200 shadow-md hover:shadow-cyan-500/20 active:scale-[0.98] cursor-pointer"
             >
-              <span>Schedule Consultation</span>
+              <span>Schedule Architecture Call</span>
               <ArrowRight className="w-4 h-4 text-cyan-300" />
             </a>
 
             <a
               href="#works"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 transition-all duration-200 shadow-2xs"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 transition-all duration-200 shadow-2xs cursor-pointer"
             >
               <Code2 className="w-4 h-4 text-slate-500" />
-              <span>View Recent Work</span>
+              <span>Explore Selected Works</span>
             </a>
           </div>
 
