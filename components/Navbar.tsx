@@ -46,8 +46,8 @@ export default function Navbar() {
                 <Terminal className="w-4 h-4 text-cyan-300" />
               </div>
               <div className="flex flex-col">
-                <span className="leading-none text-slate-900 font-semibold tracking-tight">
-                  Kevin <span className="text-cyan-600">&</span> Danendra
+                <span className="leading-none text-slate-900 font-bold tracking-tight text-base">
+                  Voltiq <span className="text-cyan-600">Labs</span>
                 </span>
                 <span className="text-[10px] font-mono font-medium text-slate-500 uppercase tracking-wider mt-0.5">
                   Engineering Studio

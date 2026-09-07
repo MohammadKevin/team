@@ -55,7 +55,7 @@ export default function ContactSection() {
           service: formData.service,
           budget: formData.budget,
           message: formData.message,
-          from_name: "Kevin & Danendra Portfolio Inquiry",
+          from_name: "Voltiq Labs Portfolio Inquiry",
         }),
       });
 
@@ -63,7 +63,7 @@ export default function ContactSection() {
         setIsSubmitted(true);
       } else {
         // Fallback to direct client mailto
-        const subject = encodeURIComponent(`Project Inquiry: ${formData.service} from ${formData.name}`);
+        const subject = encodeURIComponent(`Project Inquiry for Voltiq Labs: ${formData.service} from ${formData.name}`);
         const body = encodeURIComponent(
           `Name: ${formData.name}\nEmail: ${formData.email}\nService: ${formData.service}\nBudget: ${formData.budget}\n\nProject Brief:\n${formData.message}`
         );
@@ -72,7 +72,7 @@ export default function ContactSection() {
       }
     } catch {
       // Client-side fallback
-      const subject = encodeURIComponent(`Project Inquiry: ${formData.service} from ${formData.name}`);
+      const subject = encodeURIComponent(`Project Inquiry for Voltiq Labs: ${formData.service} from ${formData.name}`);
       const body = encodeURIComponent(
         `Name: ${formData.name}\nEmail: ${formData.email}\nService: ${formData.service}\nBudget: ${formData.budget}\n\nProject Brief:\n${formData.message}`
       );
@@ -85,7 +85,7 @@ export default function ContactSection() {
 
   const getWhatsAppUrl = () => {
     const text = encodeURIComponent(
-      `Hi Kevin & Danendra, I saw your engineering studio portfolio and would like to discuss a project.\n\nName: ${formData.name || "Prospective Client"}\nRequirement: ${formData.service}\nEstimated Budget: ${formData.budget}`
+      `Hi Voltiq Labs team (Kevin & Danendra), I saw your engineering studio portfolio and would like to discuss a project.\n\nName: ${formData.name || "Prospective Client"}\nRequirement: ${formData.service}\nEstimated Budget: ${formData.budget}`
     );
     return `https://wa.me/${whatsappNumber}?text=${text}`;
   };

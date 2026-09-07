@@ -47,9 +47,9 @@ export default function Hero() {
           {/* Engineering Badge & Live Timezone */}
           <div className="inline-flex flex-wrap items-center justify-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-slate-100 text-xs font-mono font-medium tracking-wide mb-6 shadow-xs border border-slate-800">
             <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-cyan-300 font-bold">Kevin & Danendra</span>
+            <span className="text-cyan-300 font-bold">Voltiq Labs</span>
             <span className="text-slate-500">•</span>
-            <span className="text-slate-300">Senior Fullstack & Backend Duo</span>
+            <span className="text-slate-300">Senior Fullstack & Backend Studio</span>
             <span className="hidden sm:inline text-slate-500">•</span>
             <span className="hidden sm:inline-flex items-center gap-1 text-slate-400">
               <Globe2 className="w-3 h-3 text-cyan-400" />

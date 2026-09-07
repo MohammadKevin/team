@@ -20,12 +20,12 @@ export default function Footer() {
                 <Terminal className="w-3.5 h-3.5 text-cyan-300" />
               </div>
               <span className="font-bold text-slate-900 tracking-tight text-base">
-                Mohammad Kevin <span className="text-cyan-600">&</span> Danendra Athallah
+                Voltiq <span className="text-cyan-600">Labs</span>
               </span>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 max-w-md font-normal leading-relaxed">
-              Senior fullstack and backend engineering duo building scalable web systems, clean interfaces, and
-              high-throughput APIs for modern businesses and tech startups.
+              High-performance engineering studio co-founded by Mohammad Kevin & Danendra Athallah. Building scalable
+              web applications, clean interfaces, and high-throughput APIs with zero agency bloat.
             </p>
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] font-mono text-slate-600">
               <span className="relative flex h-2 w-2">

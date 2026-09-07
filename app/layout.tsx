@@ -20,10 +20,12 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://teamwork-coral.vercel.app"),
-  title: "Kevin & Danendra — Senior Fullstack & Backend Engineering Studio",
+  title: "Voltiq Labs — High-Performance Fullstack & Systems Engineering Studio",
   description:
-    "We engineer resilient backends, clean high-performance interfaces, and seamless payment/API integrations — delivered end-to-end with zero agency bloat.",
+    "Voltiq Labs is a modern engineering studio founded by Mohammad Kevin & Danendra Athallah. We build fast, production-ready web apps, resilient APIs, and scalable infrastructure with zero agency bloat.",
   keywords: [
+    "Voltiq Labs",
+    "Voltiq Systems",
     "Mohammad Kevin",
     "Danendra Athallah",
     "Fullstack Engineer",
@@ -37,19 +39,19 @@ export const metadata: Metadata = {
     "Freelance Engineering Studio",
   ],
   authors: [{ name: "Mohammad Kevin" }, { name: "Danendra Athallah" }],
-  creator: "Mohammad Kevin & Danendra Athallah",
+  creator: "Voltiq Labs (Mohammad Kevin & Danendra Athallah)",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://teamwork-coral.vercel.app",
-    title: "Kevin & Danendra — Fullstack & Backend Engineering Duo",
+    title: "Voltiq Labs — High-Performance Engineering Studio",
     description:
       "Direct technical collaboration with senior engineers. We build production-ready Next.js, Go, PostgreSQL, and payment systems with zero agency bloat.",
-    siteName: "Kevin & Danendra Engineering Studio",
+    siteName: "Voltiq Labs",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kevin & Danendra — Fullstack & Backend Engineering Studio",
+    title: "Voltiq Labs — High-Performance Engineering Studio",
     description:
       "Production-ready Next.js & Go web applications with zero agency bloat.",
     creator: "@mohammadkevin",

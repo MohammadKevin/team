@@ -110,7 +110,7 @@ export default function FaqSection() {
             href="#contact"
             className="text-xs font-bold text-slate-900 hover:text-cyan-600 underline underline-offset-4"
           >
-            Directly ask Kevin & Danendra →
+            Directly ask the Voltiq Labs engineers →
           </a>
         </div>
       </div>

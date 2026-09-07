@@ -7,7 +7,7 @@ export default function TestimonialsSection() {
   const reviews = [
     {
       quote:
-        "Kevin and Danendra delivered our fullstack SaaS MVP in less than 4 weeks. The Next.js frontend is blistering fast with perfect Core Web Vitals, and their Go backend handled our product launch spike without a single hiccup. Best engineering decision we made.",
+        "Voltiq Labs delivered our fullstack SaaS MVP in less than 4 weeks. The Next.js frontend is blistering fast with perfect Core Web Vitals, and their Go backend handled our product launch spike without a single hiccup. Best engineering decision we made.",
       author: "Marcus Vance",
       role: "Founder & CEO",
       company: "ApexFlow Technologies",
@@ -17,7 +17,7 @@ export default function TestimonialsSection() {
     },
     {
       quote:
-        "Working directly with the engineers writing the code made communication effortless. Danendra architected a rock-solid PostgreSQL schema with Redis caching that cut our API response times by 70%. Zero agency fluff, pure technical excellence.",
+        "Working directly with the engineers at Voltiq Labs made communication effortless. Danendra architected a rock-solid PostgreSQL schema with Redis caching that cut our API response times by 70%. Zero agency fluff, pure technical excellence.",
       author: "Elena Rostova",
       role: "Head of Product",
       company: "Kroma Financial",

@@ -31,7 +31,7 @@ export default function PricingSection() {
       badge: "Continuous Engineering",
       timeline: "Monthly Dedicated Sprints",
       description:
-        "Hire Kevin & Danendra as your dedicated fullstack and backend engineering unit on a flexible monthly basis.",
+        "Hire Voltiq Labs (Kevin & Danendra) as your dedicated fullstack and backend engineering unit on a flexible monthly basis.",
       idealFor: "Growing businesses needing fast, continuous feature iterations.",
       features: [
         "Full-time technical bandwidth (Frontend & Backend)",
