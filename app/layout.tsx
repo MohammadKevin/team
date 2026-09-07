@@ -13,22 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mohammad Kevin & Danendra | Fullstack & Backend Engineering Duo",
+  title: "Kevin & Danendra — Fullstack & Backend Engineering Studio",
   description:
-    "Web development duo specializing in high-performance, scalable web systems, clean architecture, and reliable end-to-end web solutions for startups and businesses.",
+    "We engineer resilient backends, clean high-performance interfaces, and seamless payment/API integrations — delivered end-to-end with zero agency bloat.",
   keywords: [
     "Mohammad Kevin",
-    "Danendra",
-    "Fullstack Developer",
-    "Backend Developer",
-    "Web Development Studio",
-    "Next.js",
-    "React",
-    "Node.js",
-    "Go",
+    "Danendra Athallah",
+    "Fullstack Engineer",
+    "Backend Architect",
+    "Next.js Developer",
+    "Go Developer",
     "PostgreSQL",
-    "Tailwind CSS",
+    "TypeScript",
+    "Web Engineering Duo",
   ],
+  authors: [{ name: "Mohammad Kevin" }, { name: "Danendra Athallah" }],
 };
 
 export default function RootLayout({
@@ -39,9 +38,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} dark scroll-smooth h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100 selection:bg-zinc-800 selection:text-white font-sans">
+      <body className="min-h-full flex flex-col bg-white text-slate-900 selection:bg-cyan-100 selection:text-cyan-900 font-sans">
         {children}
       </body>
     </html>

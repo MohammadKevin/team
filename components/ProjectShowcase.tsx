@@ -1,213 +1,304 @@
 "use client";
 
-import { useState } from "react";
-import { ExternalLink, Layers, Laptop, Database, ArrowUpRight, CheckCircle, ChevronDown, ChevronUp } from "lucide-react";
-import { GithubIcon } from "@/components/Icons";
-import { usePortfolio, Project } from "@/context/PortfolioContext";
+import React, { useState } from "react";
+import Image from "next/image";
+import { projectsData, ProjectItem } from "@/data/projects";
+import { ArrowUpRight, X } from "lucide-react";
 
 export default function ProjectShowcase() {
-  const { projects } = usePortfolio();
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
-
-  const categories = ["All", "Fullstack SaaS", "High-Throughput API", "E-Commerce", "Enterprise Portal"];
-
-  const filteredProjects =
-    selectedCategory === "All"
-      ? projects
-      : projects.filter((p) => p.category === selectedCategory);
-
-  const toggleExpand = (id: string) => {
-    setExpandedProjectId((prev) => (prev === id ? null : id));
-  };
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
   return (
-    <section id="showcase" className="py-20 border-b border-zinc-800/80 bg-zinc-950 text-zinc-100">
+    <section id="works" className="py-20 md:py-28 bg-slate-50/50 border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <div className="font-mono text-xs text-cyan-400 mb-1">// 02. PAMERAN_PROYEK &bull; CASE_STUDIES</div>
-            <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white font-sans">
-              Featured Engineering Projects
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-slate-200 text-xs font-mono font-semibold text-slate-700 uppercase tracking-wider mb-3">
+              <span className="w-2 h-2 rounded-full bg-cyan-500" />
+              Selected Works
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Engineered for Production Scale
             </h2>
-            <p className="text-zinc-400 text-sm sm:text-base mt-1">
-              Real-world systems delivered with quantifiable business metrics, clean architecture, and strict division of responsibility.
+            <p className="mt-2 text-base text-slate-600 max-w-2xl">
+              High-impact SaaS platforms, real-time collaboration engines, and resilient payment gateways built
+              collaboratively from ground up.
             </p>
           </div>
 
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center gap-1.5 bg-zinc-900 border border-zinc-800 p-1.5 rounded-lg font-mono text-xs">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded transition-all truncate ${
-                  selectedCategory === cat
-                    ? "bg-zinc-800 text-white font-semibold shadow-sm"
-                    : "text-zinc-400 hover:text-white"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="flex items-center gap-2 text-xs font-mono text-slate-500 bg-white px-3 py-2 rounded-lg border border-slate-200 self-start md:self-auto">
+            <span className="font-semibold text-slate-900">4 Featured Systems</span>
+            <span>•</span>
+            <span className="text-cyan-700 font-semibold">100% Client Retention</span>
           </div>
         </div>
 
-        {/* Project Grid */}
-        <div className="grid grid-cols-1 gap-6">
-          {filteredProjects.map((project) => {
-            const isExpanded = expandedProjectId === project.id;
-            return (
-              <div
-                key={project.id}
-                className="rounded-lg bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 transition-all overflow-hidden"
-              >
-                {/* Main Card Summary Header */}
-                <div className="p-6 sm:p-8 space-y-6">
-                  {/* Top Bar: Category, Outcome Metric, External Links */}
-                  <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-zinc-800/80">
-                    <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-                      <span className="px-2.5 py-1 rounded bg-zinc-950 border border-zinc-800 text-zinc-300 font-semibold">
-                        {project.category}
-                      </span>
-                      <span className="text-zinc-700 hidden sm:inline">|</span>
-                      <span className="px-2.5 py-1 rounded bg-emerald-950/60 border border-emerald-800/60 text-emerald-300 font-mono">
-                        {project.outcome}
-                      </span>
-                    </div>
+        {/* 2-Column Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {projectsData.map((project) => (
+            <div
+              key={project.id}
+              className="group flex flex-col bg-white rounded-2xl border border-slate-200 hover:border-cyan-400 hover:shadow-md transition-all duration-200 overflow-hidden"
+            >
+              {/* Project Mockup Container */}
+              <div className="relative aspect-video w-full overflow-hidden bg-slate-100 border-b border-slate-200 group-hover:border-cyan-500/30 transition-colors">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+                  priority={project.isFeatured}
+                />
 
-                    <div className="flex items-center gap-2 font-mono text-xs">
-                      {project.githubUrl && (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition-colors border border-zinc-700"
-                        >
-                          <GithubIcon className="w-3.5 h-3.5" />
-                          <span>CODE</span>
-                        </a>
-                      )}
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-white text-zinc-950 font-bold hover:bg-zinc-200 transition-colors"
-                        >
-                          <span>LIVE_DEMO</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
+                {/* Top Floating Badge */}
+                <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
+                  <span className="px-2.5 py-1 rounded-md bg-white/95 backdrop-blur-xs text-[11px] font-mono font-bold text-slate-800 border border-slate-200/80 shadow-2xs">
+                    {project.categoryBadge}
+                  </span>
+                </div>
+              </div>
 
-                  {/* Title & Headline */}
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">
+              {/* Card Body */}
+              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                <div>
+                  {/* Title & Tagline */}
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-xl font-bold text-slate-900 group-hover:text-cyan-600 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-sm sm:text-base text-zinc-300 mt-1 font-normal leading-relaxed">
-                      {project.headline}
-                    </p>
                   </div>
+                  <p className="mt-2 text-sm text-slate-600 font-normal leading-relaxed">
+                    {project.headline}
+                  </p>
 
-                  {/* Problem & Solution Card */}
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-4 text-xs font-mono">
-                    <div className="md:col-span-6 p-4 rounded bg-zinc-950 border border-zinc-800/80 space-y-1.5">
-                      <div className="text-red-400 font-semibold">// PROBLEM_SOLVED</div>
-                      <p className="text-zinc-300 font-sans leading-relaxed text-xs">
-                        {project.problem}
-                      </p>
+                  {/* Problem & Solution Accordion-like Preview */}
+                  <div className="mt-4 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs">
+                    <div>
+                      <span className="font-mono font-bold text-slate-700">CHALLENGE: </span>
+                      <span className="text-slate-600">{project.problem}</span>
                     </div>
-                    <div className="md:col-span-6 p-4 rounded bg-zinc-950 border border-zinc-800/80 space-y-1.5">
-                      <div className="text-emerald-400 font-semibold">// BUSINESS_OUTCOME</div>
-                      <p className="text-zinc-300 font-sans leading-relaxed text-xs">
-                        {project.outcome}
-                      </p>
+                    <div>
+                      <span className="font-mono font-bold text-cyan-700">SOLUTION: </span>
+                      <span className="text-slate-600">{project.solution}</span>
                     </div>
                   </div>
 
-                  {/* Split Team Responsibility (Mohammad Kevin vs Danendra) */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                    {/* Kevin */}
-                    <div className="p-4 rounded bg-zinc-950/80 border border-cyan-950 space-y-2">
-                      <div className="flex items-center gap-2 font-mono text-xs text-cyan-300 font-bold border-b border-zinc-800/60 pb-2">
-                        <Laptop className="w-3.5 h-3.5 text-cyan-400" />
-                        <span>MOHAMMAD KEVIN &bull; FULLSTACK &amp; CLIENT</span>
+                  {/* Impact Stats */}
+                  <div className="mt-4 grid grid-cols-3 gap-2 pt-1 border-t border-slate-100">
+                    {project.stats.map((stat, idx) => (
+                      <div key={idx} className="p-2 rounded-lg bg-white border border-slate-200/70 text-center">
+                        <div className="text-xs sm:text-sm font-bold font-mono text-slate-900">{stat.value}</div>
+                        <div className="text-[10px] text-slate-500 truncate">{stat.label}</div>
                       </div>
-                      <p className="text-xs text-zinc-300 leading-relaxed font-sans">
+                    ))}
+                  </div>
+
+                  {/* Engineer Responsibilities Breakdown */}
+                  <div className="mt-4 space-y-1.5 text-xs">
+                    <div className="flex items-start gap-1.5">
+                      <span className="px-1.5 py-0.5 rounded-sm bg-sky-100 text-sky-800 font-mono font-bold text-[10px]">
+                        Kevin
+                      </span>
+                      <span className="text-slate-600 text-[11px] leading-tight">
                         {project.kevinResponsibility}
-                      </p>
+                      </span>
                     </div>
-
-                    {/* Danendra */}
-                    <div className="p-4 rounded bg-zinc-950/80 border border-emerald-950 space-y-2">
-                      <div className="flex items-center gap-2 font-mono text-xs text-emerald-300 font-bold border-b border-zinc-800/60 pb-2">
-                        <Database className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>DANENDRA &bull; BACKEND API &amp; DB ARCHITECTURE</span>
-                      </div>
-                      <p className="text-xs text-zinc-300 leading-relaxed font-sans">
+                    <div className="flex items-start gap-1.5">
+                      <span className="px-1.5 py-0.5 rounded-sm bg-cyan-100 text-cyan-800 font-mono font-bold text-[10px]">
+                        Danendra
+                      </span>
+                      <span className="text-slate-600 text-[11px] leading-tight">
                         {project.danendraResponsibility}
-                      </p>
+                      </span>
                     </div>
-                  </div>
-
-                  {/* Stack & Expand Trigger */}
-                  <div className="pt-2 border-t border-zinc-800/80 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="px-2 py-0.5 rounded bg-zinc-950 border border-zinc-800 text-zinc-400 text-[11px]"
-                        >
-                          #{t}
-                        </span>
-                      ))}
-                    </div>
-
-                    <button
-                      onClick={() => toggleExpand(project.id)}
-                      className="inline-flex items-center gap-1 text-zinc-400 hover:text-white transition-colors"
-                    >
-                      <span>{isExpanded ? "HIDE_DETAILS" : "INSPECT_ARCHITECTURE"}</span>
-                      {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-                    </button>
                   </div>
                 </div>
 
-                {/* Expandable Architecture Drawer */}
-                {isExpanded && (
-                  <div className="p-6 sm:p-8 bg-zinc-950 border-t border-zinc-800 font-mono text-xs space-y-4">
-                    <div className="text-zinc-500 uppercase tracking-wider">// ARCHITECTURAL_BLUEPRINT_AND_INTEGRATION</div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="p-3.5 rounded bg-zinc-900 border border-zinc-800 space-y-1">
-                        <div className="text-cyan-400 font-bold">Client Sync</div>
-                        <p className="text-zinc-400 text-[11px] font-sans">
-                          Type-safe RPC contracts and React 19 Server Actions ensure zero runtime interface mismatches.
-                        </p>
-                      </div>
-                      <div className="p-3.5 rounded bg-zinc-900 border border-zinc-800 space-y-1">
-                        <div className="text-emerald-400 font-bold">Concurrency &amp; Caching</div>
-                        <p className="text-zinc-400 text-[11px] font-sans">
-                          Redis distributed locks and PgBouncer connection pooling guarantee seamless peak traffic endurance.
-                        </p>
-                      </div>
-                      <div className="p-3.5 rounded bg-zinc-900 border border-zinc-800 space-y-1">
-                        <div className="text-purple-400 font-bold">Security Posture</div>
-                        <p className="text-zinc-400 text-[11px] font-sans">
-                          Row-Level Security (RLS) policies, rate limiting, and encrypted payload verification at gateway level.
-                        </p>
-                      </div>
-                    </div>
+                {/* Bottom Footer: Tech Stack & Action Links */}
+                <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  {/* Tech Stack Chips */}
+                  <div className="flex flex-wrap gap-1.5 max-w-[70%]">
+                    {project.techStack.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-mono font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.techStack.length > 4 && (
+                      <span className="px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-500 text-[11px] font-mono">
+                        +{project.techStack.length - 4}
+                      </span>
+                    )}
                   </div>
-                )}
+
+                  {/* Actions */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 transition-colors"
+                    >
+                      <span>Case Details</span>
+                    </button>
+                    {project.demoUrl && (
+                      <button
+                        onClick={() => setSelectedProject(project)}
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-slate-900 hover:bg-cyan-600 transition-colors"
+                      >
+                        <span>Demo</span>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-cyan-300" />
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Case Study Modal Dialog */}
+      {selectedProject && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in duration-150"
+          onClick={() => setSelectedProject(null)}
+        >
+          <div
+            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl border border-slate-200 shadow-2xl p-6 sm:p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Modal Header */}
+            <div className="flex items-center gap-2 mb-2">
+              <span className="px-2.5 py-0.5 rounded-md bg-cyan-100 text-cyan-800 font-mono text-xs font-semibold">
+                {selectedProject.categoryBadge}
+              </span>
+              <span className="text-xs font-mono text-slate-500">Case Study Breakdown</span>
+            </div>
+
+            <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
+              {selectedProject.title}
+            </h3>
+            <p className="mt-1 text-sm text-slate-600">{selectedProject.headline}</p>
+
+            {/* Preview Image */}
+            <div className="mt-5 relative aspect-video w-full rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
+              <Image
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                fill
+                sizes="(max-width: 800px) 100vw, 800px"
+                className="object-cover"
+              />
+            </div>
+
+            {/* Key Metrics */}
+            <div className="mt-6 grid grid-cols-3 gap-3">
+              {selectedProject.stats.map((stat, i) => (
+                <div key={i} className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-center">
+                  <div className="text-lg font-mono font-extrabold text-slate-900">{stat.value}</div>
+                  <div className="text-xs text-slate-500">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Deep Problem & Solution */}
+            <div className="mt-6 space-y-4">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+                <h4 className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Problem & Architectural Bottleneck
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  {selectedProject.problem}
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-cyan-50/50 border border-cyan-200/60">
+                <h4 className="text-xs font-mono font-bold text-cyan-800 uppercase tracking-wider mb-1">
+                  Our Engineering Solution & Implementation
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  {selectedProject.solution}
+                </p>
+              </div>
+            </div>
+
+            {/* Technical Responsibilities */}
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-white border border-slate-200">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2 py-0.5 rounded-md bg-sky-100 text-sky-800 font-mono font-bold text-xs">
+                    Mohammad Kevin
+                  </span>
+                  <span className="text-xs text-slate-500 font-medium">Frontend Lead</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {selectedProject.kevinResponsibility}
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-white border border-slate-200">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2 py-0.5 rounded-md bg-cyan-100 text-cyan-800 font-mono font-bold text-xs">
+                    Danendra Athallah
+                  </span>
+                  <span className="text-xs text-slate-500 font-medium">Backend Lead</span>
+                </div>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  {selectedProject.danendraResponsibility}
+                </p>
+              </div>
+            </div>
+
+            {/* Tech Stack */}
+            <div className="mt-6">
+              <h4 className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider mb-2">
+                Tech Stack & Libraries
+              </h4>
+              <div className="flex flex-wrap gap-1.5">
+                {selectedProject.techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-800 text-xs font-mono font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Modal Actions */}
+            <div className="mt-8 pt-4 border-t border-slate-200 flex items-center justify-between">
+              <a
+                href="#contact"
+                onClick={() => setSelectedProject(null)}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold text-white bg-slate-900 hover:bg-cyan-600 transition-colors"
+              >
+                <span>Inquire for Similar Project</span>
+                <ArrowUpRight className="w-4 h-4 text-cyan-300" />
+              </a>
+
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

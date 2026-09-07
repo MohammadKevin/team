@@ -1,353 +1,271 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  Terminal,
-  Send,
-  Check,
   Mail,
-  Clock,
-  MessageCircle,
-  Copy,
+  MessageSquare,
   Calendar,
-  X,
-  Sparkles,
+  Send,
+  CheckCircle2,
+  Clock,
+  ArrowRight,
+  ShieldCheck,
 } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/Icons";
-import { usePortfolio } from "@/context/PortfolioContext";
 
 export default function ContactSection() {
-  const { selectedPackage } = usePortfolio();
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    scope: "Custom Web Application (Full-Cycle)",
-    budget: "$5,000 - $10,000",
-    timeline: "1 - 2 Months",
+    service: "Fullstack Web Applications",
+    budget: "$2,000 – $5,000",
     message: "",
   });
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successModalOpen, setSuccessModalOpen] = useState(false);
-  const [submissionId, setSubmissionId] = useState("");
-  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
-
-  // Update scope when package is selected from pricing
-  useEffect(() => {
-    if (selectedPackage) {
-      setFormData((prev) => ({
-        ...prev,
-        scope: selectedPackage,
-      }));
-    }
-  }, [selectedPackage]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmissionId(`INQ-${Math.floor(100000 + Math.random() * 900000)}`);
-      setSuccessModalOpen(true);
+      setIsSubmitted(true);
     }, 600);
   };
 
-  const copyToClipboard = (text: string, label: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedEmail(label);
-    setTimeout(() => setCopiedEmail(null), 2000);
-  };
-
   return (
-    <section id="contact" className="py-20 bg-zinc-950 text-zinc-100 relative">
+    <section id="contact" className="py-20 md:py-28 bg-slate-50/50 border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
-          <div className="font-mono text-xs text-cyan-400 mb-1">// 05. HUBUNGI_TIM &bull; INITIATE_PROJECT</div>
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white font-sans">
-            Start Your Project With Our Duo
+        <div className="max-w-3xl mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-white border border-slate-200 text-xs font-mono font-semibold text-slate-700 uppercase tracking-wider mb-3">
+            <span className="w-2 h-2 rounded-full bg-cyan-500" />
+            Direct Engineer Inquiry
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Let’s Build Something Resilient Together
           </h2>
-          <p className="text-zinc-400 text-sm sm:text-base mt-1">
-            Direct communication with Mohammad Kevin &amp; Danendra. Fast turnaround, transparent scoping, and zero middlemen.
+          <p className="mt-3 text-base text-slate-600 leading-relaxed font-normal">
+            Whether you need a fullstack SaaS from scratch, an API overhaul, or a payment system integration, we
+            respond within 12 hours with actionable technical insights.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Column: Direct Communication Hub */}
-          <div className="lg:col-span-5 space-y-4 font-mono text-xs">
-            {/* Quick WhatsApp Action Box */}
-            <div className="p-5 rounded-lg bg-emerald-950/30 border border-emerald-800/60 space-y-3">
-              <div className="flex items-center justify-between text-emerald-300">
-                <span className="font-bold font-sans text-sm flex items-center gap-1.5">
-                  <MessageCircle className="w-4 h-4 text-emerald-400" />
-                  Instant WhatsApp Chat
-                </span>
-                <span className="text-[10px] bg-emerald-900/60 px-2 py-0.5 rounded border border-emerald-700/60">
-                  FASTEST_RESPONSE
-                </span>
-              </div>
-              <p className="text-zinc-300 text-xs font-sans leading-relaxed">
-                Prefer immediate messaging? Chat with us directly on WhatsApp to get a rapid project feasibility assessment.
-              </p>
-              <a
-                href="https://wa.me/6281234567890?text=Halo%20Kevin%20%26%20Danendra%2C%20saya%20ingin%20konsultasi%20mengenai%20project%20web."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold transition-all"
-              >
-                <span>OPEN_WHATSAPP_CHAT</span>
-                <Send className="w-3.5 h-3.5" />
-              </a>
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          {/* Left Column: Fast Action Channels */}
+          <div className="lg:col-span-5 space-y-6">
+            {/* Quick Contact Card */}
+            <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-xs">
+              <h3 className="text-base font-bold text-slate-900 mb-4">Direct Channels</h3>
 
-            {/* Mohammad Kevin Contact Card */}
-            <div className="p-5 rounded-lg bg-zinc-900/60 border border-zinc-800 space-y-2.5">
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-white text-sm font-sans">Mohammad Kevin</span>
-                <span className="text-cyan-400 text-[10px] bg-cyan-950/70 px-2 py-0.5 rounded border border-cyan-800/70">
-                  FULLSTACK_LEAD
-                </span>
-              </div>
-              <div className="flex items-center justify-between text-zinc-400">
-                <span>kevin@example.com</span>
-                <button
-                  onClick={() => copyToClipboard("kevin@example.com", "kevin")}
-                  className="p-1 hover:text-white transition-colors"
-                  title="Copy email"
+              <div className="space-y-4">
+                {/* WhatsApp Action */}
+                <a
+                  href="https://wa.me/6281234567890?text=Hi%20Kevin%20%26%20Danendra,%20I'd%20like%20to%20discuss%20a%20project"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/30 transition-all duration-150"
                 >
-                  {copiedEmail === "kevin" ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                </button>
-              </div>
-              <div className="flex items-center gap-3 pt-1 text-zinc-400">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1">
-                  <GithubIcon className="w-3.5 h-3.5" /> GITHUB
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-10 h-10 rounded-lg bg-emerald-500 text-white flex items-center justify-center font-bold">
+                      <MessageSquare className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-slate-900 group-hover:text-emerald-800">
+                        Chat on WhatsApp
+                      </div>
+                      <div className="text-xs text-slate-500">Fastest for quick technical scopes</div>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition-colors" />
                 </a>
-                <span>&bull;</span>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1">
-                  <LinkedinIcon className="w-3.5 h-3.5" /> LINKEDIN
-                </a>
-              </div>
-            </div>
 
-            {/* Danendra Contact Card */}
-            <div className="p-5 rounded-lg bg-zinc-900/60 border border-zinc-800 space-y-2.5">
-              <div className="flex items-center justify-between">
-                <span className="font-bold text-white text-sm font-sans">Danendra</span>
-                <span className="text-emerald-400 text-[10px] bg-emerald-950/70 px-2 py-0.5 rounded border border-emerald-800/70">
-                  BACKEND_LEAD
-                </span>
-              </div>
-              <div className="flex items-center justify-between text-zinc-400">
-                <span>danendra@example.com</span>
-                <button
-                  onClick={() => copyToClipboard("danendra@example.com", "danendra")}
-                  className="p-1 hover:text-white transition-colors"
-                  title="Copy email"
+                {/* Direct Email */}
+                <a
+                  href="mailto:kevin@codestudio.dev?subject=Project%20Inquiry%20from%20Portfolio"
+                  className="group flex items-center justify-between p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-cyan-400 hover:bg-cyan-50/30 transition-all duration-150"
                 >
-                  {copiedEmail === "danendra" ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                </button>
-              </div>
-              <div className="flex items-center gap-3 pt-1 text-zinc-400">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1">
-                  <GithubIcon className="w-3.5 h-3.5" /> GITHUB
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-10 h-10 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold">
+                      <Mail className="w-5 h-5 text-cyan-300" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-slate-900 group-hover:text-cyan-800">
+                        Email The Engineers
+                      </div>
+                      <div className="text-xs text-slate-500">kevin@codestudio.dev</div>
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-cyan-600 transition-colors" />
                 </a>
-                <span>&bull;</span>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1">
-                  <LinkedinIcon className="w-3.5 h-3.5" /> LINKEDIN
-                </a>
-              </div>
-            </div>
 
-            {/* Response Timeline guarantee */}
-            <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800 flex items-center gap-3 text-zinc-400">
-              <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>GUARANTEED_RESPONSE: &lt; 24 HOURS</span>
+                {/* Calendar Booking */}
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                  <div className="flex items-center gap-3.5 mb-2">
+                    <div className="w-10 h-10 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center font-bold">
+                      <Calendar className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-slate-900">30-Min Architecture Discovery</div>
+                      <div className="text-xs text-slate-500">Free video consultation with both engineers</div>
+                    </div>
+                  </div>
+                  <p className="text-xs text-slate-600 mt-2">
+                    Discuss your timeline, tech stack recommendations, and milestone estimations with zero obligation.
+                  </p>
+                </div>
+              </div>
+
+              {/* Guarantees */}
+              <div className="mt-6 pt-5 border-t border-slate-100 space-y-2.5 text-xs text-slate-600">
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-cyan-600 shrink-0" />
+                  <span>Sub-12 hour response time guaranteed</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-cyan-600 shrink-0" />
+                  <span>Strict NDA and full code ownership handover</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Project Inquiry Form */}
+          {/* Right Column: Interactive Form */}
           <div className="lg:col-span-7">
-            <div className="rounded-lg bg-zinc-900 border border-zinc-800 overflow-hidden font-mono text-xs">
-              {/* Header */}
-              <div className="px-5 py-3 bg-zinc-950 border-b border-zinc-800 flex items-center justify-between text-zinc-500">
-                <div className="flex items-center gap-2">
-                  <Terminal className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>project_inquiry_form.ts</span>
-                </div>
-                <span className="text-cyan-400 text-[11px]">STATUS: READY</span>
-              </div>
-
-              {/* Form */}
-              <form onSubmit={handleSubmit} className="p-6 space-y-4 font-mono">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-zinc-400">// YOUR_NAME</label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="e.g. Alex Pratama"
-                      className="w-full px-3 py-2.5 rounded bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors"
-                    />
+            <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs">
+              {isSubmitted ? (
+                <div className="py-12 text-center space-y-4">
+                  <div className="w-14 h-14 mx-auto rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center">
+                    <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <div className="space-y-1.5">
-                    <label className="text-zinc-400">// EMAIL_ADDRESS</label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="e.g. alex@company.com"
-                      className="w-full px-3 py-2.5 rounded bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-zinc-400">// PROJECT_PACKAGE</label>
-                    <select
-                      value={formData.scope}
-                      onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
-                      className="w-full px-3 py-2.5 rounded bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-zinc-500 transition-colors"
-                    >
-                      <option value="MVP Launchpad">MVP Launchpad (2-3 Weeks)</option>
-                      <option value="Custom Web Application (Full-Cycle)">
-                        Custom Web Application (Full-Cycle)
-                      </option>
-                      <option value="Enterprise Architecture & Mesh">
-                        Enterprise Architecture &amp; Mesh
-                      </option>
-                      <option value="Custom Scope / Fractional">Custom Scope / Retainer</option>
-                    </select>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-zinc-400">// BUDGET_ESTIMATE</label>
-                    <select
-                      value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className="w-full px-3 py-2.5 rounded bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-zinc-500 transition-colors"
-                    >
-                      <option value="$2,000 - $4,000">&lt; $4,000 (&lt; Rp 60M)</option>
-                      <option value="$4,000 - $8,000">$4,000 - $8,000 (Rp 60M - 125M)</option>
-                      <option value="$8,000 - $15,000">$8,000 - $15,000 (Rp 125M - 235M)</option>
-                      <option value="$15,000+">$15,000+ (&gt; Rp 235M)</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-zinc-400">// TIMELINE_TARGET</label>
-                  <select
-                    value={formData.timeline}
-                    onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-zinc-500 transition-colors"
+                  <h3 className="text-2xl font-bold text-slate-900">Message Received!</h3>
+                  <p className="text-sm text-slate-600 max-w-md mx-auto">
+                    Thank you for reaching out. Kevin and Danendra will review your specifications and reply to{" "}
+                    <span className="font-semibold text-slate-900">{formData.email}</span> within 12 hours.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setIsSubmitted(false);
+                      setFormData({
+                        name: "",
+                        email: "",
+                        service: "Fullstack Web Applications",
+                        budget: "$2,000 – $5,000",
+                        message: "",
+                      });
+                    }}
+                    className="mt-4 px-4 py-2 rounded-lg text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors"
                   >
-                    <option value="Immediate (< 2 Weeks)">Immediate (&lt; 2 Weeks)</option>
-                    <option value="1 - 2 Months">Standard Sprint (1 - 2 Months)</option>
-                    <option value="2 - 3 Months">Comprehensive Build (2 - 3 Months)</option>
-                    <option value="Flexible">Flexible / Ongoing</option>
-                  </select>
+                    Send Another Inquiry
+                  </button>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {/* Name */}
+                    <div>
+                      <label className="block text-xs font-mono font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        Your Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Sarah Jenkins"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-hidden focus:ring-2 focus:ring-cyan-500 focus:bg-white transition-all"
+                      />
+                    </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-zinc-400">// PROJECT_DETAILS_AND_REQUIREMENTS</label>
-                  <textarea
-                    rows={4}
-                    required
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us about the problem you are solving, existing stack, target audience, and key features..."
-                    className="w-full px-3 py-2.5 rounded bg-zinc-950 border border-zinc-800 text-white placeholder-zinc-700 focus:outline-none focus:border-zinc-500 transition-colors resize-none font-sans text-xs"
-                  />
-                </div>
+                    {/* Email */}
+                    <div>
+                      <label className="block text-xs font-mono font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        Work Email *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="sarah@company.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-hidden focus:ring-2 focus:ring-cyan-500 focus:bg-white transition-all"
+                      />
+                    </div>
+                  </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded bg-white hover:bg-zinc-200 text-zinc-950 font-bold transition-all text-xs font-mono disabled:opacity-50"
-                >
-                  {isSubmitting ? (
-                    <span>TRANSMITTING_DATA...</span>
-                  ) : (
-                    <>
-                      <span>SUBMIT_PROJECT_INQUIRY</span>
-                      <Send className="w-3.5 h-3.5" />
-                    </>
-                  )}
-                </button>
-              </form>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {/* Service Type */}
+                    <div>
+                      <label className="block text-xs font-mono font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        Primary Requirement
+                      </label>
+                      <select
+                        value={formData.service}
+                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-hidden focus:ring-2 focus:ring-cyan-500 focus:bg-white transition-all"
+                      >
+                        <option>Fullstack Web Applications</option>
+                        <option>Backend & API Architecture</option>
+                        <option>Third-Party & Payment Integrations</option>
+                        <option>Deployment, Cloud & Maintenance</option>
+                        <option>Complete Custom System</option>
+                      </select>
+                    </div>
+
+                    {/* Budget Range */}
+                    <div>
+                      <label className="block text-xs font-mono font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                        Estimated Budget Range
+                      </label>
+                      <select
+                        value={formData.budget}
+                        onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                        className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-hidden focus:ring-2 focus:ring-cyan-500 focus:bg-white transition-all"
+                      >
+                        <option>&lt; $2,000 (Micro / Consultation)</option>
+                        <option>$2,000 – $5,000 (Standard Web App / API)</option>
+                        <option>$5,000 – $10,000 (Full Platform / SaaS)</option>
+                        <option>$10,000+ (Enterprise Multi-Month)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Project Brief */}
+                  <div>
+                    <label className="block text-xs font-mono font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                      Project Brief & Technical Goals *
+                    </label>
+                    <textarea
+                      required
+                      rows={4}
+                      placeholder="Briefly describe what you're building, target timeline, and any existing tech stack or repositories..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 text-sm focus:outline-hidden focus:ring-2 focus:ring-cyan-500 focus:bg-white transition-all"
+                    ></textarea>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-slate-900 hover:bg-cyan-600 transition-all duration-200 shadow-md hover:shadow-cyan-500/20 active:scale-[0.99] disabled:opacity-50"
+                  >
+                    {isSubmitting ? (
+                      <span>Sending inquiry...</span>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 text-cyan-300" />
+                        <span>Submit Project Specifications</span>
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
       </div>
-
-      {/* Success Modal */}
-      {successModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="relative w-full max-w-lg rounded-lg bg-zinc-900 border border-zinc-800 p-6 sm:p-8 space-y-6 shadow-2xl font-mono text-xs">
-            {/* Close */}
-            <button
-              onClick={() => setSuccessModalOpen(false)}
-              className="absolute top-4 right-4 p-1 text-zinc-400 hover:text-white"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded bg-emerald-950 border border-emerald-800 text-emerald-400 flex items-center justify-center">
-                <Check className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-base font-bold text-white font-sans">Inquiry Received Successfully</div>
-                <div className="text-zinc-400 text-[11px]">REF_ID: {submissionId}</div>
-              </div>
-            </div>
-
-            <div className="p-4 rounded bg-zinc-950 border border-zinc-800 space-y-2 text-zinc-300 font-sans text-xs leading-relaxed">
-              <p>
-                Thank you for reaching out, <strong className="text-white">{formData.name}</strong>! Your inquiry for{" "}
-                <span className="text-cyan-400 font-mono">{formData.scope}</span> has been routed directly to{" "}
-                <strong>Mohammad Kevin</strong> and <strong>Danendra</strong>.
-              </p>
-              <p className="text-zinc-400 text-[11px] font-mono">
-                &bull; Estimated Response: Within 24 hours via {formData.email}
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center gap-3 font-mono">
-              <a
-                href="https://wa.me/6281234567890?text=Halo%20Kevin%20%26%20Danendra%2C%20saya%20sudah%20mengirim%20inquiry%20web%20dengan%20ref%20"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 rounded bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold transition-all"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>FOLLOW_UP_ON_WHATSAPP</span>
-              </a>
-              <button
-                onClick={() => setSuccessModalOpen(false)}
-                className="w-full py-2.5 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-semibold transition-colors"
-              >
-                CLOSE_WINDOW
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

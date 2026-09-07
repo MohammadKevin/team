@@ -1,62 +1,127 @@
 "use client";
 
-import { ArrowUp, Terminal, MessageCircle } from "lucide-react";
-import { usePortfolio } from "@/context/PortfolioContext";
+import React from "react";
+import { Terminal, Mail, ArrowUp } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/Icons";
 
 export default function Footer() {
-  const { setIsCmsOpen } = usePortfolio();
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="border-t border-zinc-900 bg-zinc-950 text-zinc-500 font-mono text-xs py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Brand */}
-          <div className="flex flex-col items-center md:items-start gap-1">
-            <div className="flex items-center gap-2 text-zinc-200">
-              <span className="font-bold text-white text-sm">MOHAMMAD KEVIN &times; DANENDRA</span>
-              <span className="text-zinc-700">|</span>
-              <span className="text-zinc-400 text-[11px]">WEB_ENGINEERING_DUO</span>
+    <footer className="bg-white border-t border-slate-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          {/* Brand & Mission */}
+          <div className="md:col-span-2 space-y-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 rounded-lg bg-slate-900 text-white flex items-center justify-center font-mono text-xs font-semibold shadow-2xs">
+                <Terminal className="w-3.5 h-3.5 text-cyan-300" />
+              </div>
+              <span className="font-bold text-slate-900 tracking-tight text-base">
+                Mohammad Kevin <span className="text-cyan-600">&</span> Danendra Athallah
+              </span>
             </div>
-            <p className="text-[11px] text-zinc-500 max-w-sm text-center md:text-left font-sans">
-              High-performance, scalable web systems, clean architecture, and reliable end-to-end web solutions for startups &amp; enterprises.
+            <p className="text-xs sm:text-sm text-slate-600 max-w-md font-normal leading-relaxed">
+              Senior fullstack and backend engineering duo building scalable web systems, clean interfaces, and
+              high-throughput APIs for modern businesses and tech startups.
             </p>
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-[11px] font-mono text-slate-600">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+              </span>
+              <span>Accepting New Projects (Q3/Q4 2026)</span>
+            </div>
           </div>
 
-          {/* Quick jump */}
-          <div className="flex flex-wrap items-center justify-center gap-5 text-zinc-400">
-            <a href="#team" className="hover:text-white transition-colors">01.TEAM</a>
-            <a href="#showcase" className="hover:text-white transition-colors">02.SHOWCASE</a>
-            <a href="#testimonials" className="hover:text-white transition-colors">03.REVIEWS</a>
-            <a href="#pricing" className="hover:text-white transition-colors">04.PRICING</a>
-            <a href="#contact" className="hover:text-white transition-colors">05.CONTACT</a>
+          {/* Navigation Quick Links */}
+          <div>
+            <h4 className="text-xs font-mono font-bold text-slate-900 uppercase tracking-wider mb-3">
+              Navigation
+            </h4>
+            <ul className="space-y-2 text-xs font-medium text-slate-600">
+              <li>
+                <a href="#services" className="hover:text-cyan-600 transition-colors">
+                  Services & Capabilities
+                </a>
+              </li>
+              <li>
+                <a href="#works" className="hover:text-cyan-600 transition-colors">
+                  Selected Works
+                </a>
+              </li>
+              <li>
+                <a href="#team" className="hover:text-cyan-600 transition-colors">
+                  The Engineering Duo
+                </a>
+              </li>
+              <li>
+                <a href="#process" className="hover:text-cyan-600 transition-colors">
+                  Milestone Workflow
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-cyan-600 transition-colors">
+                  Contact & Inquiry
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Socials & Back to top */}
+          <div className="flex flex-col justify-between">
+            <div>
+              <h4 className="text-xs font-mono font-bold text-slate-900 uppercase tracking-wider mb-3">
+                Engineering Profiles
+              </h4>
+              <div className="flex items-center gap-2">
+                <a
+                  href="https://github.com/mohammadkevin"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white transition-colors"
+                  aria-label="GitHub Profiles"
+                >
+                  <GithubIcon className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 hover:bg-cyan-600 hover:text-white transition-colors"
+                  aria-label="LinkedIn Profiles"
+                >
+                  <LinkedinIcon className="w-4 h-4" />
+                </a>
+                <a
+                  href="mailto:kevin@codestudio.dev"
+                  className="p-2 rounded-lg bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white transition-colors"
+                  aria-label="Direct Email"
+                >
+                  <Mail className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
             <button
-              onClick={() => setIsCmsOpen(true)}
-              className="text-cyan-400 hover:text-cyan-300 font-bold"
+              onClick={scrollToTop}
+              className="mt-6 self-start inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs font-mono text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors cursor-pointer"
             >
-              CMS_STUDIO
+              <span>Back to top</span>
+              <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>
-
-          {/* Back to top */}
-          <button
-            onClick={scrollToTop}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all"
-          >
-            <span>BACK_TO_TOP</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-zinc-900/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-600">
+        {/* Bottom Disclosures & Copyright */}
+        <div className="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-600">
           <div>
-            &copy; {new Date().getFullYear()} Mohammad Kevin &amp; Danendra &bull; All Rights Reserved.
+            © {new Date().getFullYear()} Mohammad Kevin & Danendra Athallah. All rights reserved.
           </div>
-          <div>
-            REACT 19 &bull; NEXT.JS 16 &bull; TAILWIND CSS v4 &bull; PRODUCTION_DEPLOYED
+          <div className="flex items-center gap-2">
+            <span>Built with Next.js 16, TypeScript & Tailwind CSS</span>
           </div>
         </div>
       </div>
