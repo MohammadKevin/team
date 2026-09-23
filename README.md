@@ -18,9 +18,9 @@ A creative team showcase highlighting member skill matrices, collective project 
 ---
 
 ## ✨ Key Features
-- ⚡ **Team roster cards with skill proficiency indicators and social links**: Team roster cards with skill proficiency indicators and social links
-- ⚡ **Joint portfolio showcase with animated transitions**: Joint portfolio showcase with animated transitions
-- ⚡ **Responsive design with modern minimalist styling**: Responsive design with modern minimalist styling
+- Team roster cards with skill proficiency indicators and social links
+- Joint portfolio showcase with animated transitions
+- Responsive design with modern minimalist styling
 
 ---
 
